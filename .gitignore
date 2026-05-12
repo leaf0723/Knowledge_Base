@@ -1,0 +1,211 @@
+# =========================
+# System files
+# =========================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+
+
+# =========================
+# Python
+# =========================
+
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Python virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Python build / package files
+build/
+dist/
+*.egg-info/
+.eggs/
+*.egg
+
+# Python test / cache
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+
+# =========================
+# Environment / secrets
+# =========================
+
+.env
+.env.*
+!.env.example
+
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+
+secrets.*
+credentials.*
+config.local.*
+
+
+# =========================
+# VS Code
+# =========================
+
+.vscode/
+
+# 如果未來你想同步 VS Code 專案設定，可以改成不要忽略整個 .vscode/
+# 但目前求職作品集階段，先不要上傳比較乾淨。
+
+
+# =========================
+# Obsidian
+# =========================
+
+# Obsidian workspace 狀態，不需要同步
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+
+# Obsidian cache
+.obsidian/cache/
+
+# Obsidian plugins 的個人狀態資料
+.obsidian/plugins/*/data.json
+
+# Obsidian trash
+.trash/
+
+
+# =========================
+# Large datasets
+# =========================
+
+data/
+datasets/
+dataset/
+raw_data/
+processed_data/
+
+# 如果某個 project 真的需要小型 sample data，
+# 建議另外建立 sample_data/，不要放完整 dataset。
+
+
+# =========================
+# Model files
+# =========================
+
+*.h5
+*.keras
+*.pt
+*.pth
+*.onnx
+*.ckpt
+*.pb
+*.tflite
+*.joblib
+*.pkl
+*.pickle
+
+
+# =========================
+# Media files
+# =========================
+
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.wav
+*.mp3
+*.flac
+
+# 如果要在 README 展示圖片，圖片可以放 assets/images/
+# 所以下面不要忽略 png/jpg/jpeg/svg。
+
+
+# =========================
+# Compressed files
+# =========================
+
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.rar
+*.7z
+
+
+# =========================
+# Logs
+# =========================
+
+*.log
+logs/
+
+
+# =========================
+# Temporary files
+# =========================
+
+tmp/
+temp/
+*.tmp
+*.bak
+*.swp
+*.swo
+
+
+# =========================
+# Experiment outputs
+# =========================
+
+runs/
+outputs/
+checkpoints/
+wandb/
+mlruns/
+tensorboard/
+lightning_logs/
+
+
+# =========================
+# Node / frontend, in case future projects use it
+# =========================
+
+node_modules/
+.next/
+out/
+coverage/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+
+# =========================
+# Database files
+# =========================
+
+*.sqlite
+*.sqlite3
+*.db
