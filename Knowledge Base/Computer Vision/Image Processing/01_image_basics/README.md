@@ -106,9 +106,3 @@ Continue to:
 ```
 
 The next notebook focuses on noise removal and smoothing methods, including Gaussian blur, median filtering, and bilateral filtering.
-
-```
-::contentReference[oaicite:1]{index=1}
-```
-
-[1]: https://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/What%20is%20the%20Jupyter%20Notebook.html?utm_source=chatgpt.com "What is the Jupyter Notebook?"
