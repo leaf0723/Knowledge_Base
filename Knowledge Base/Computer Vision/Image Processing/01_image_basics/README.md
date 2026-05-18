@@ -1,250 +1,69 @@
+```text
+Knowledge Base/Computer Vision/Image Processing/01_image_basics/README.md
+```
+
+Jupyter Notebook 適合把 live code、文字與視覺化結果放在同一份文件中；這也是我建議這個目錄以 `.ipynb` 作為主要學習紀錄形式的原因。這個 notebook 會用到 scikit-image、OpenCV 與 Matplotlib：scikit-image 提供影像處理工具，OpenCV 提供色彩空間轉換等常用 CV 操作，Matplotlib 則負責顯示圖像結果。([jupyter-notebook.readthedocs.io][1])
+
 ````markdown
 # 01 Image Basics
 
-This notebook documents the basic image representation concepts required before learning filtering, thresholding, morphology, edge detection, and defect inspection.
+This folder contains the first notebook in the Image Processing learning series.
 
-The focus is not on memorizing API calls.  
-The focus is on understanding what an image actually is in code.
+The goal of this notebook is to build the minimum foundation required before moving into filtering, thresholding, morphology, edge detection, and defect inspection.
 
-## Purpose
+## Objective
 
-In image processing, many errors do not come from advanced algorithms.  
-They come from basic misunderstandings:
+Understand how images are represented and handled in Python-based computer vision workflows.
 
-- confusing RGB and BGR channel order
-- displaying grayscale images with the wrong colormap
-- processing an image without checking its `shape`, `dtype`, and value range
-- assuming all images use the same pixel scale
-- using HSV without understanding what each channel means
+This notebook focuses on the basic details that often cause problems later:
 
-This notebook builds the minimum foundation needed to avoid those mistakes.
+- image shape and data type
+- grayscale and color image representation
+- RGB and BGR channel order
+- basic color space conversion
+- correct image visualization
+- simple mask generation
+- saving intermediate results
 
-## What This Notebook Covers
-
-### 1. Image as Array
-
-An image is essentially a NumPy array.
-
-- Grayscale image: `height × width`
-- Color image: `height × width × channels`
-
-In practice:
+## Main Notebook
 
 ```text
-image processing = array processing
-pixel = number
-color pixel = usually three numbers
+image_basics.ipynb
 ```
 ````
 
-### 2. Basic Image Inspection
+This notebook includes explanation, executable code, visual outputs, and saved intermediate images.
 
-Before processing any image, inspect:
-
-```python
-image.shape
-image.dtype
-image.min()
-image.max()
-```
-
-These values tell us:
-
-| Item              | Meaning                                |
-| ----------------- | -------------------------------------- |
-| `shape`           | Image dimension and number of channels |
-| `dtype`           | How pixel values are stored            |
-| `min()` / `max()` | Pixel value range                      |
-
-A common image format is:
-
-```text
-dtype: uint8
-range: 0 ~ 255
-```
-
-This means each pixel is stored as an 8-bit unsigned integer.
-
-### 3. RGB Channel Structure
-
-A normal RGB image contains three channels:
-
-```text
-R channel
-G channel
-B channel
-```
-
-Each channel is still a 2D intensity image.
-The only difference is what that intensity represents.
-
-The key idea:
-
-```text
-A color image is not a mysterious object.
-It is three grayscale-like maps stacked together.
-```
-
-### 4. RGB to Grayscale
-
-Grayscale conversion compresses color information into one intensity value.
-
-Conceptually:
-
-```text
-RGB pixel  = [R, G, B]
-Gray pixel = one brightness value
-```
-
-This is useful when the task depends more on structure, shape, edge, or intensity than color.
-
-Examples:
-
-- edge detection
-- thresholding
-- contour detection
-- defect spot detection
-- document processing
-
-### 5. Matplotlib Grayscale Display
-
-When displaying a 2D grayscale image with Matplotlib, use:
-
-```python
-plt.imshow(image, cmap="gray", vmin=0, vmax=255)
-```
-
-Without `cmap="gray"`, Matplotlib may display the image using a pseudocolor map.
-
-The practical rule:
-
-```text
-If the image is 2D grayscale, explicitly set cmap="gray".
-```
-
-### 6. RGB vs BGR
-
-This is one of the most common OpenCV mistakes.
-
-- `skimage.data` images are usually RGB.
-- `matplotlib.pyplot.imshow()` expects RGB for color images.
-- `cv2.imread()` reads color images as BGR.
-
-So if an image is loaded by OpenCV and displayed directly with Matplotlib, the colors may look wrong.
-
-Correct workflow:
-
-```python
-img_bgr = cv2.imread("image.jpg")
-img_rgb = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB)
-
-plt.imshow(img_rgb)
-```
-
-The practical rule:
-
-```text
-OpenCV reads BGR.
-Matplotlib displays RGB.
-Convert before displaying.
-```
-
-### 7. HSV Color Space
-
-HSV separates color into:
-
-| Channel | Meaning                    |
-| ------- | -------------------------- |
-| H       | Hue: color type            |
-| S       | Saturation: color strength |
-| V       | Value: brightness          |
-
-RGB describes color by mixing red, green, and blue.
-HSV describes color in a way that is closer to how humans describe color.
-
-For example:
-
-```text
-What color is it?
-How strong is the color?
-How bright is it?
-```
-
-This makes HSV useful for color-based segmentation.
-
-Examples:
-
-- extracting colorful regions
-- detecting specific object colors
-- separating brightness from color information
-- creating simple masks based on saturation or brightness
-
-### 8. Simple HSV-Based Mask
-
-The notebook includes a small example using the Saturation channel.
-
-The idea:
-
-```text
-High saturation = strong color
-Low saturation  = closer to gray, white, or black
-```
-
-A simple threshold on the Saturation channel can already produce a useful mask.
-
-This is not a complete detection system, but it shows the basic logic behind many classical image processing pipelines:
-
-```text
-convert color space
-select useful channel
-threshold
-create mask
-apply mask to original image
-```
-
-## Files
+## Directory Structure
 
 ```text
 01_image_basics/
 │
-├── image_basics.ipynb
 ├── README.md
+├── image_basics.ipynb
 └── outputs/
     └── 01_image_basics/
 ```
 
-## Output Images
+The `outputs/` folder is generated by the notebook and stores intermediate result images.
 
-The notebook saves several intermediate results:
+## Tools Used
 
-```text
-01_original_rgb_saved_by_cv2.png
-02_grayscale.png
-03_saturation_mask.png
-04_high_saturation_regions.png
-```
+| Tool         | Purpose                                     |
+| ------------ | ------------------------------------------- |
+| OpenCV       | Image processing and color space conversion |
+| scikit-image | Built-in sample image source                |
+| NumPy        | Image array inspection and mask operation   |
+| Matplotlib   | Image visualization                         |
+| pathlib      | Output path management                      |
 
-Saving intermediate results is intentional.
+## How to Run
 
-In real image processing projects, when the final result is wrong, intermediate outputs help identify which step broke.
-
-## Required Packages
+Install the required packages:
 
 ```bash
 pip install opencv-python scikit-image matplotlib numpy jupyterlab ipykernel
 ```
-
-Main libraries used in this notebook:
-
-| Library      | Usage                                            |
-| ------------ | ------------------------------------------------ |
-| OpenCV       | Color conversion, image processing, image saving |
-| scikit-image | Built-in sample image                            |
-| NumPy        | Array inspection and mask creation               |
-| Matplotlib   | Image visualization                              |
-| pathlib      | Output folder management                         |
-
-## How to Run
 
 Open the notebook in VSCode:
 
@@ -254,63 +73,42 @@ image_basics.ipynb
 
 Then run all cells from top to bottom.
 
-Before running, make sure the Python environment has the required packages installed.
+## Expected Outputs
 
-## Key Takeaways
-
-The most important points from this notebook:
-
-- An image is just an array.
-- A grayscale image is usually `H × W`.
-- A color image is usually `H × W × 3`.
-- `shape`, `dtype`, and value range should be checked before processing.
-- RGB and BGR are not the same.
-- OpenCV uses BGR when reading images with `cv2.imread()`.
-- Matplotlib expects RGB for color display.
-- Grayscale images should be displayed with `cmap="gray"`.
-- HSV is useful because it separates color type, color strength, and brightness.
-- A mask is simply an image that marks which pixels should be kept or ignored.
-
-## Engineering Note
-
-The first habit in image processing should not be applying algorithms immediately.
-
-The first habit should be:
+After running the notebook, the following images will be saved:
 
 ```text
-inspect the image
-understand the data format
-display it correctly
-save intermediate results
+outputs/01_image_basics/
+├── 01_original_rgb_saved_by_cv2.png
+├── 02_grayscale.png
+├── 03_saturation_mask.png
+└── 04_high_saturation_regions.png
 ```
 
-If these basics are wrong, every later method becomes unreliable.
+These outputs are used to verify each processing step visually.
 
-## Next Notebook
+## Key Learning Outcome
 
-Next topic:
+After completing this notebook, the reader should understand one core idea:
 
 ```text
-02_filtering_and_denoising/filtering_and_denoising.ipynb
+An image is just an array, and most image processing problems begin with understanding the array correctly.
 ```
 
-Recommended focus:
+This includes checking image dimensions, channel order, pixel value range, and display behavior before applying any algorithm.
 
-- Gaussian blur
-- Median filter
-- Bilateral filter
-- Salt-and-pepper noise
-- Gaussian noise
-- Effect of filtering on edges
+## Next Step
 
-Core question for the next notebook:
+Continue to:
 
 ```text
-When we remove noise, what image details are we also damaging?
+../02_filtering_and_denoising/filtering_and_denoising.ipynb
 ```
+
+The next notebook focuses on noise removal and smoothing methods, including Gaussian blur, median filtering, and bilateral filtering.
 
 ```
 ::contentReference[oaicite:1]{index=1}
 ```
 
-[1]: https://scikit-image.org/docs/stable/user_guide/numpy_images.html?utm_source=chatgpt.com "4. A crash course on NumPy for images"
+[1]: https://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/What%20is%20the%20Jupyter%20Notebook.html?utm_source=chatgpt.com "What is the Jupyter Notebook?"
