@@ -93,11 +93,11 @@ outputs/02_filtering_and_denoising/
 繼續到：
 
 ```text
-../03_thresholding/thresholding.ipynb
+../03_thresholding_and_morphology/thresholding.ipynb
 ```
 
 繁體中文版：
 
 ```text
-../03_thresholding/thresholding_zh.ipynb
+../03_thresholding_and_morphology/thresholding_zh.ipynb
 ```

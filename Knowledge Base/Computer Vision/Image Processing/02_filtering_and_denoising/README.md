@@ -93,11 +93,11 @@ The core outcome of this folder is understanding that denoising is always a trad
 Continue to:
 
 ```text
-../03_thresholding/thresholding.ipynb
+../03_thresholding_and_morphology/thresholding.ipynb
 ```
 
 Traditional Chinese version:
 
 ```text
-../03_thresholding/thresholding_zh.ipynb
+../03_thresholding_and_morphology/thresholding_zh.ipynb
 ```
