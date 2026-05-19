@@ -1,52 +1,45 @@
 # 02 Filtering and Denoising
 
-This folder contains the second notebook in the Image Processing learning series.
+This folder contains the second notebook in the Image Processing practice series.
 
-The goal is to understand how common filters reduce noise, and what image details they damage in the process.
+It focuses on basic filtering and denoising methods, with emphasis on visual comparison, local detail preservation, and practical trade-offs.
 
 ## Objective
 
-Practice basic denoising methods and compare their behavior under different noise types.
+Compare common denoising filters and understand what each method removes, what it damages, and when it is suitable.
 
-This notebook focuses on:
+## Main Files
 
-- Gaussian noise
-- Salt-and-pepper noise
-- Gaussian blur
-- Median filtering
-- Bilateral filtering
-- visual comparison, zoomed comparison, and difference maps
-
-## Main Notebook
-
-```text
-filtering_and_denoising.ipynb
-```
-
-The notebook includes explanation, executable code, visual comparison, parameter comparison, quantitative checking, and saved output images.
+| File | Description |
+|---|---|
+| `README.md` | English directory entry document |
+| `README_zh.md` | Traditional Chinese directory entry document |
+| `filtering_and_denoising.ipynb` | English notebook |
+| `filtering_and_denoising_zh.ipynb` | Traditional Chinese notebook |
 
 ## Directory Structure
 
 ```text
 02_filtering_and_denoising/
-│
 ├── README.md
+├── README_zh.md
 ├── filtering_and_denoising.ipynb
+├── filtering_and_denoising_zh.ipynb
 └── outputs/
     └── 02_filtering_and_denoising/
 ```
 
-The `outputs/` folder is generated after running the notebook.
+The `outputs/02_filtering_and_denoising/` folder is generated when the notebook is executed.
 
-## Tools Used
+## What You Will Learn
 
-| Tool | Purpose |
-|---|---|
-| OpenCV | Gaussian, median, bilateral filtering, image saving |
-| scikit-image | Built-in grayscale sample image |
-| NumPy | Noise generation, array operation, PSNR calculation |
-| Matplotlib | Image visualization |
-| pathlib | Output path management |
+- Create Gaussian noise and salt-and-pepper noise
+- Apply Gaussian blur, median filtering, and bilateral filtering
+- Compare filtering results under different noise types
+- Use zoomed crops to inspect local detail damage
+- Use difference maps to visualize what changed
+- Use PSNR as a simple numerical reference
+- Save output images for later inspection
 
 ## How to Run
 
@@ -56,38 +49,44 @@ Install the required packages:
 pip install opencv-python scikit-image matplotlib numpy jupyterlab ipykernel
 ```
 
-Open the notebook in VSCode:
+Open one of the notebooks in VSCode and run all cells from top to bottom:
 
 ```text
 filtering_and_denoising.ipynb
+filtering_and_denoising_zh.ipynb
 ```
-
-Then run all cells from top to bottom.
 
 ## Expected Outputs
 
-After running the notebook, result images will be saved under:
+After running the notebook, outputs are saved under:
 
 ```text
 outputs/02_filtering_and_denoising/
 ```
 
-The saved outputs include:
-
-- clean reference image
-- noisy images
-- denoised results
-- difference maps
-
-## Key Learning Outcome
-
-After completing this notebook, the reader should understand this core idea:
+Main output files:
 
 ```text
-Denoising is not just removing noise. It is choosing which image details are acceptable to lose.
+01_clean_image.png
+02_noisy_images_comparison.png
+02_gaussian_noise.png
+03_salt_pepper_noise.png
+04_gaussian_noise_filter_comparison.png
+05_salt_pepper_filter_comparison.png
+06_zoomed_edge_comparison.png
+07_difference_maps.png
+08_gaussian_kernel_size_comparison.png
+09_gaussian_blur_on_gaussian_noise.png
+10_median_filter_on_gaussian_noise.png
+11_bilateral_filter_on_gaussian_noise.png
+12_gaussian_blur_on_salt_pepper_noise.png
+13_median_filter_on_salt_pepper_noise.png
+14_bilateral_filter_on_salt_pepper_noise.png
 ```
 
-Gaussian blur, median filtering, and bilateral filtering all reduce noise, but they do not damage the image in the same way.
+## Key Outcome
+
+The core outcome of this folder is understanding that denoising is always a trade-off: removing noise often means damaging edges, textures, or small structures.
 
 ## Next Step
 
@@ -97,4 +96,8 @@ Continue to:
 ../03_thresholding/thresholding.ipynb
 ```
 
-The next notebook focuses on converting grayscale images into binary masks through thresholding.
+Traditional Chinese version:
+
+```text
+../03_thresholding/thresholding_zh.ipynb
+```
